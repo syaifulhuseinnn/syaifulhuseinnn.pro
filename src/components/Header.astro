@@ -1,0 +1,15 @@
+---
+import ThemeToggle from './ThemeToggle.astro';
+---
+
+<header class="sticky top-0 z-40 w-full border-b bg-white/90 dark:bg-gray-900/90 dark:border-gray-700 backdrop-blur">
+  <div class="max-w-4xl mx-auto px-4">
+    <div class="flex items-center justify-between h-16">
+      <nav class="flex items-center gap-8">
+        <a href="/" class="text-lg font-semibold">syaifulhusein.</a>
+        <a href="/blog" class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">Blog</a>
+      </nav>
+      <ThemeToggle />
+    </div>
+  </div>
+</header>

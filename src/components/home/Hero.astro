@@ -1,0 +1,51 @@
+---
+import { Image } from "astro:assets";
+import { VerifiedIcon } from "../icons";
+import ButtonWithIcon from "../button/ButtonWithIcon.astro";
+import Mail from "../icons/Mail.astro";
+
+interface Props {
+  fullName: string;
+  headline: string;
+}
+
+const { fullName, headline } = Astro.props;
+---
+
+<section id="hero" class="w-full h-[40vh] xl:h-72 bg-white relative">
+  <!-- Banner -->
+  <div
+    id="banner"
+    class="w-full h-1/3 md:h-1/2 xl:h-2/3 bg-center bg-no-repeat bg-cover bg-[url('https://images.unsplash.com/photo-1620121692029-d088224ddc74?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')]"
+  >
+  </div>
+
+  <!-- Profile Picture -->
+  <div
+    id="profile-picture"
+    class="absolute left-5 xl:left-10 top-16 md:top-1/3 xl:top-[unset] xl:bottom-2"
+  >
+    <img
+      src="https://api.dicebear.com/9.x/open-peeps/svg?seed=syaiful&flip=true&clip=true&face=smile&accessories=glasses3&accessoriesProbability=100&facialHairProbability=0&head=pomp&clothingColor=BCB0ED&backgroundColor=ffffff"
+      class="object-cover size-28 xl:size-36 bg-stone-100 rounded-full border-4 border-white shadow-sm"
+    />
+
+    <div id="verified-icon" class="absolute rounded-full bottom-1 right-1">
+      <VerifiedIcon width="32" height="32" color="#2F91F8" />
+    </div>
+  </div>
+
+  <!-- Name, Headline, Contact Me Button -->
+  <div
+    class="flex flex-col gap-5 xl:gap-0 xl:flex-row xl:items-center xl:justify-between w-full xl:pl-52 xl:pr-10 xl:py-5 pt-16"
+  >
+    <div id="headline" class="h-auto">
+      <h1 class="text-3xl font-bold antialiased">{fullName}</h1>
+      <h2 class="text-lg text-gray-500 antialiased">{headline}</h2>
+    </div>
+    <ButtonWithIcon>
+      <Mail slot="icon" />
+      Contact Me
+    </ButtonWithIcon>
+  </div>
+</section>

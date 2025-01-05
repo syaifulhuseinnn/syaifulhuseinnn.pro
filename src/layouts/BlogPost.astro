@@ -1,0 +1,60 @@
+---
+import Layout from './Layout.astro';
+import TableOfContents from '../components/blog/TableOfContents.astro';
+import { formatDate } from '../utils/date';
+
+interface Props {
+  title: string;
+  description: string;
+  pubDate: Date;
+  updatedDate?: Date;
+  heroImage?: string;
+  tags?: string[];
+  readingTime: string;
+}
+
+const { title, description, pubDate, updatedDate, heroImage, tags, readingTime } = Astro.props;
+---
+
+<Layout title={title} description={description}>
+  <article class="prose prose-lg dark:prose-invert mx-auto">
+    {heroImage && <img src={heroImage} alt="" class="w-full rounded-lg" />}
+    
+    <header class="mt-8">
+      <h1 class="mb-4">{title}</h1>
+      <div class="flex flex-wrap gap-4 text-sm text-gray-600 dark:text-gray-400">
+        <time datetime={pubDate.toISOString()}>{formatDate(pubDate)}</time>
+        {readingTime && (
+          <>
+            <span>•</span>
+            <span>{readingTime}</span>
+          </>
+        )}
+        {updatedDate && (
+          <>
+            <span>•</span>
+            <span>Updated on {formatDate(updatedDate)}</span>
+          </>
+        )}
+      </div>
+      {tags && tags.length > 0 && (
+        <div class="mt-4 flex flex-wrap gap-2">
+          {tags.map(tag => (
+            <a 
+              href={`/blog/tag/${tag}`} 
+              class="text-sm text-indigo-600 dark:text-indigo-400 hover:underline"
+            >
+              #{tag}
+            </a>
+          ))}
+        </div>
+      )}
+    </header>
+
+    <TableOfContents headings={Astro.props.headings} />
+    
+    <div class="mt-8">
+      <slot />
+    </div>
+  </article>
+</Layout>
