@@ -9,6 +9,7 @@ export default {
         mono: ["Fira Code", "monospace"],
       },
       screens: {
+        xs: "390px",
         "3xl": "1920px",
       },
     },
